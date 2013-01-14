@@ -198,10 +198,8 @@
                         [self dismissProgress:nil];
                         
 						NSString *responseStr = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-						//[[NSUserDefaults standardUserDefaults] setObject:responseStr forKey:@"authData"];
-						//[self sendAuthData:responseStr loginWebView:nil];
                         NSLog(@"AuthData : %@",responseStr);
-					}
+ 					}
 				}];
 			});
 		}
