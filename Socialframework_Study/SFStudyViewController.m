@@ -142,12 +142,16 @@
         return;
     }
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
-        NSURL *url = [NSURL URLWithString:@"http://api.twitter.com/1.1/statuses/update.json"];
+        NSURL *url = [NSURL URLWithString:@"http://api.twitter.com/1.1/statuses/update_with_media.json"];
         NSDictionary *params = [NSDictionary dictionaryWithObject:[self createShareMessage] forKey:@"status"];
         SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter
                                                 requestMethod:SLRequestMethodPOST
                                                           URL:url
                                                    parameters:params];
+
+        NSData *imageData=UIImagePNGRepresentation([self getPlayingTrackImage]);
+        [request addMultipartData:imageData withName:@"media[]" type:@"multipart/form-data" filename:@"hoge"];
+        
         [request setAccount:self.selectedAccount];
         [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
             NSLog(@"responseData=%@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
@@ -224,6 +228,12 @@
 -(NSString *)createShareMessage{
     MPMediaItem *item = [self getPlayingItem];
     return [NSString stringWithFormat:@"%@ の %@ を聴いています",[item valueForProperty:MPMediaItemPropertyArtist],[item valueForProperty:MPMediaItemPropertyTitle]];
+}
+
+-(UIImage *)getPlayingTrackImage{
+    MPMediaItem *item = [self getPlayingItem];
+	MPMediaItemArtwork *artwork = [item valueForProperty:MPMediaItemPropertyArtwork];
+    return [artwork imageWithSize:CGSizeMake(320, 320)];
 }
 
 #pragma mark - notificationCenter
