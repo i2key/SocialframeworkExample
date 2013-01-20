@@ -9,5 +9,16 @@
 #import "UIAlertViewWithoutDelegate.h"
 
 @implementation UIAlertViewWithoutDelegate
-
+- (void)showWithCompletionHandler:(void(^)(NSInteger buttonIndex))completionHandler
+{
+    // completionHandler を copy し、アラートを表示する。
+    _completionHandler = [completionHandler copy];
+    [self show];
+}
+- (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated
+{
+    // アラートを閉じ、 _completionHandler を実行する。
+    [super dismissWithClickedButtonIndex:buttonIndex animated:animated];
+    _completionHandler(buttonIndex);
+}
 @end

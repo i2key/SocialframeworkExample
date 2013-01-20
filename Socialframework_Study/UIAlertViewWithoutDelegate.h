@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UIAlertViewWithoutDelegate : NSObject
-
+@interface UIAlertViewWithoutDelegate: UIAlertView {
+    void    (^_completionHandler)(NSInteger buttonIndex);
+}
+- (void)showWithCompletionHandler:(void(^)(NSInteger buttonIndex))_completionHandler;
 @end

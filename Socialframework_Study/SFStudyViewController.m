@@ -13,6 +13,8 @@
 #import <Twitter/Twitter.h>
 #import <Accounts/Accounts.h>
 #import "SVProgressHUD.h"
+#import "UIAlertViewWithoutDelegate.h"
+#import "ACAccountDetailViewController.h"
 
 #define TW_X_AUTH_MODE_KEY                  @"x_auth_mode"
 #define TW_X_AUTH_MODE_REVERSE_AUTH         @"reverse_auth"
@@ -138,6 +140,7 @@
 
 #pragma mark - SLRequest Sample
 - (IBAction)tweetUsingSLRequest:(id)sender {
+    
     if(self.selectedAccount == Nil){
         return;
     }
@@ -196,14 +199,28 @@
 						[self dismissProgress:@"Error occurred in Step 2."];
 					} else {
                         [self dismissProgress:nil];
-                        
+        
 						NSString *responseStr = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
                         NSLog(@"AuthData : %@",responseStr);
+                        
+                        [self performSelectorOnMainThread:@selector(showAlert:) withObject:responseStr waitUntilDone:YES];
  					}
 				}];
 			});
 		}
 	}];
+}
+
+- (void)showAlert:(NSString *)message
+{
+    UIAlertViewWithoutDelegate *alertView = [[UIAlertViewWithoutDelegate alloc] initWithTitle:@"Alert"
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:@"cancel"
+                                              otherButtonTitles:@"ok", nil];
+    [alertView showWithCompletionHandler:^(NSInteger buttonIndex) {
+        // Do something.
+    }];
 }
 
 #pragma mark - mediaPlayer
@@ -250,6 +267,14 @@
 	} else {
 		[SVProgressHUD dismiss];
 	}
+}
+
+#pragma mark - Segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ACAccountDetailViewController *controller = (ACAccountDetailViewController *)[segue destinationViewController];
+    controller.selectedAccount = self.selectedAccount;
+
 }
 
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD0C178A16A51E3100627977 /* UIAlertViewWithoutDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0C178916A51E3100627977 /* UIAlertViewWithoutDelegate.m */; };
+		DD7BEFE416ABCC6E000276B4 /* ACAccountDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7BEFE316ABCC6E000276B4 /* ACAccountDetailViewController.m */; };
 		DDDCB6B716A172EF00461FD0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDCB6B616A172EF00461FD0 /* UIKit.framework */; };
 		DDDCB6B916A172EF00461FD0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDCB6B816A172EF00461FD0 /* Foundation.framework */; };
 		DDDCB6BB16A172EF00461FD0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDCB6BA16A172EF00461FD0 /* CoreGraphics.framework */; };
@@ -31,6 +33,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD0C178816A51E3100627977 /* UIAlertViewWithoutDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAlertViewWithoutDelegate.h; sourceTree = "<group>"; };
+		DD0C178916A51E3100627977 /* UIAlertViewWithoutDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAlertViewWithoutDelegate.m; sourceTree = "<group>"; };
+		DD7BEFE216ABCC6E000276B4 /* ACAccountDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACAccountDetailViewController.h; sourceTree = "<group>"; };
+		DD7BEFE316ABCC6E000276B4 /* ACAccountDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACAccountDetailViewController.m; sourceTree = "<group>"; };
 		DDDCB6B216A172EF00461FD0 /* Socialframework_Study.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Socialframework_Study.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDDCB6B616A172EF00461FD0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DDDCB6B816A172EF00461FD0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -124,6 +130,10 @@
 				DDDCB6D116A172EF00461FD0 /* SFStudyViewController.h */,
 				DDDCB6D216A172EF00461FD0 /* SFStudyViewController.m */,
 				DDDCB6BD16A172EF00461FD0 /* Supporting Files */,
+				DD0C178816A51E3100627977 /* UIAlertViewWithoutDelegate.h */,
+				DD0C178916A51E3100627977 /* UIAlertViewWithoutDelegate.m */,
+				DD7BEFE216ABCC6E000276B4 /* ACAccountDetailViewController.h */,
+				DD7BEFE316ABCC6E000276B4 /* ACAccountDetailViewController.m */,
 			);
 			path = Socialframework_Study;
 			sourceTree = "<group>";
@@ -252,6 +262,8 @@
 				DDDCB6F816A19EF600461FD0 /* OAuth+Additions.m in Sources */,
 				DDDCB6F916A19EF600461FD0 /* OAuthCore.m in Sources */,
 				DDDCB6FF16A1B1FF00461FD0 /* SVProgressHUD.m in Sources */,
+				DD0C178A16A51E3100627977 /* UIAlertViewWithoutDelegate.m in Sources */,
+				DD7BEFE416ABCC6E000276B4 /* ACAccountDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
