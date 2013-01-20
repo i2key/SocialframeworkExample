@@ -10,11 +10,13 @@
 #import <Accounts/Accounts.h>
 
 @interface ACAccountDetailViewController : UIViewController
+- (IBAction)reverseAuth:(id)sender;
 - (IBAction)pushCloseBtn:(id)sender;
 
 @property(nonatomic,strong) ACAccount *selectedAccount;
 @property (weak, nonatomic) IBOutlet UILabel *accountTypeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UITextView *oauthTokenTextView;
+@property (weak, nonatomic) IBOutlet UIButton *reverseAuthBtn;
 
 @end
