@@ -9,6 +9,19 @@
 /* Begin PBXBuildFile section */
 		DD0C178A16A51E3100627977 /* UIAlertViewWithoutDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0C178916A51E3100627977 /* UIAlertViewWithoutDelegate.m */; };
 		DD7BEFE416ABCC6E000276B4 /* ACAccountDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7BEFE316ABCC6E000276B4 /* ACAccountDetailViewController.m */; };
+		DD7BEFE816AC73FC000276B4 /* MusicManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7BEFE716AC73FC000276B4 /* MusicManager.m */; };
+		DD7BF00016AD9DB7000276B4 /* btn_post_setting_facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = DD7BEFF416AD9DB7000276B4 /* btn_post_setting_facebook.png */; };
+		DD7BF00116AD9DB7000276B4 /* btn_post_setting_facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD7BEFF516AD9DB7000276B4 /* btn_post_setting_facebook@2x.png */; };
+		DD7BF00216AD9DB7000276B4 /* btn_post_setting_facebook_pushed.png in Resources */ = {isa = PBXBuildFile; fileRef = DD7BEFF616AD9DB7000276B4 /* btn_post_setting_facebook_pushed.png */; };
+		DD7BF00316AD9DB7000276B4 /* btn_post_setting_facebook_pushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD7BEFF716AD9DB7000276B4 /* btn_post_setting_facebook_pushed@2x.png */; };
+		DD7BF00416AD9DB7000276B4 /* btn_post_setting_submit.png in Resources */ = {isa = PBXBuildFile; fileRef = DD7BEFF816AD9DB7000276B4 /* btn_post_setting_submit.png */; };
+		DD7BF00516AD9DB7000276B4 /* btn_post_setting_submit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD7BEFF916AD9DB7000276B4 /* btn_post_setting_submit@2x.png */; };
+		DD7BF00616AD9DB7000276B4 /* btn_post_setting_submit_pushed.png in Resources */ = {isa = PBXBuildFile; fileRef = DD7BEFFA16AD9DB7000276B4 /* btn_post_setting_submit_pushed.png */; };
+		DD7BF00716AD9DB7000276B4 /* btn_post_setting_submit_pushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD7BEFFB16AD9DB7000276B4 /* btn_post_setting_submit_pushed@2x.png */; };
+		DD7BF00816AD9DB7000276B4 /* btn_post_setting_twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = DD7BEFFC16AD9DB7000276B4 /* btn_post_setting_twitter.png */; };
+		DD7BF00916AD9DB7000276B4 /* btn_post_setting_twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD7BEFFD16AD9DB7000276B4 /* btn_post_setting_twitter@2x.png */; };
+		DD7BF00A16AD9DB7000276B4 /* btn_post_setting_twitter_pushed.png in Resources */ = {isa = PBXBuildFile; fileRef = DD7BEFFE16AD9DB7000276B4 /* btn_post_setting_twitter_pushed.png */; };
+		DD7BF00B16AD9DB7000276B4 /* btn_post_setting_twitter_pushed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD7BEFFF16AD9DB7000276B4 /* btn_post_setting_twitter_pushed@2x.png */; };
 		DDDCB6B716A172EF00461FD0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDCB6B616A172EF00461FD0 /* UIKit.framework */; };
 		DDDCB6B916A172EF00461FD0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDCB6B816A172EF00461FD0 /* Foundation.framework */; };
 		DDDCB6BB16A172EF00461FD0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDCB6BA16A172EF00461FD0 /* CoreGraphics.framework */; };
@@ -37,6 +50,20 @@
 		DD0C178916A51E3100627977 /* UIAlertViewWithoutDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAlertViewWithoutDelegate.m; sourceTree = "<group>"; };
 		DD7BEFE216ABCC6E000276B4 /* ACAccountDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACAccountDetailViewController.h; sourceTree = "<group>"; };
 		DD7BEFE316ABCC6E000276B4 /* ACAccountDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACAccountDetailViewController.m; sourceTree = "<group>"; };
+		DD7BEFE616AC73FC000276B4 /* MusicManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicManager.h; sourceTree = "<group>"; };
+		DD7BEFE716AC73FC000276B4 /* MusicManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicManager.m; sourceTree = "<group>"; };
+		DD7BEFF416AD9DB7000276B4 /* btn_post_setting_facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_post_setting_facebook.png; sourceTree = "<group>"; };
+		DD7BEFF516AD9DB7000276B4 /* btn_post_setting_facebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_post_setting_facebook@2x.png"; sourceTree = "<group>"; };
+		DD7BEFF616AD9DB7000276B4 /* btn_post_setting_facebook_pushed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_post_setting_facebook_pushed.png; sourceTree = "<group>"; };
+		DD7BEFF716AD9DB7000276B4 /* btn_post_setting_facebook_pushed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_post_setting_facebook_pushed@2x.png"; sourceTree = "<group>"; };
+		DD7BEFF816AD9DB7000276B4 /* btn_post_setting_submit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_post_setting_submit.png; sourceTree = "<group>"; };
+		DD7BEFF916AD9DB7000276B4 /* btn_post_setting_submit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_post_setting_submit@2x.png"; sourceTree = "<group>"; };
+		DD7BEFFA16AD9DB7000276B4 /* btn_post_setting_submit_pushed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_post_setting_submit_pushed.png; sourceTree = "<group>"; };
+		DD7BEFFB16AD9DB7000276B4 /* btn_post_setting_submit_pushed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_post_setting_submit_pushed@2x.png"; sourceTree = "<group>"; };
+		DD7BEFFC16AD9DB7000276B4 /* btn_post_setting_twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_post_setting_twitter.png; sourceTree = "<group>"; };
+		DD7BEFFD16AD9DB7000276B4 /* btn_post_setting_twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_post_setting_twitter@2x.png"; sourceTree = "<group>"; };
+		DD7BEFFE16AD9DB7000276B4 /* btn_post_setting_twitter_pushed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_post_setting_twitter_pushed.png; sourceTree = "<group>"; };
+		DD7BEFFF16AD9DB7000276B4 /* btn_post_setting_twitter_pushed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_post_setting_twitter_pushed@2x.png"; sourceTree = "<group>"; };
 		DDDCB6B216A172EF00461FD0 /* Socialframework_Study.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Socialframework_Study.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDDCB6B616A172EF00461FD0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DDDCB6B816A172EF00461FD0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -88,6 +115,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD7BEFF316AD9DB7000276B4 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				DD7BEFF416AD9DB7000276B4 /* btn_post_setting_facebook.png */,
+				DD7BEFF516AD9DB7000276B4 /* btn_post_setting_facebook@2x.png */,
+				DD7BEFF616AD9DB7000276B4 /* btn_post_setting_facebook_pushed.png */,
+				DD7BEFF716AD9DB7000276B4 /* btn_post_setting_facebook_pushed@2x.png */,
+				DD7BEFF816AD9DB7000276B4 /* btn_post_setting_submit.png */,
+				DD7BEFF916AD9DB7000276B4 /* btn_post_setting_submit@2x.png */,
+				DD7BEFFA16AD9DB7000276B4 /* btn_post_setting_submit_pushed.png */,
+				DD7BEFFB16AD9DB7000276B4 /* btn_post_setting_submit_pushed@2x.png */,
+				DD7BEFFC16AD9DB7000276B4 /* btn_post_setting_twitter.png */,
+				DD7BEFFD16AD9DB7000276B4 /* btn_post_setting_twitter@2x.png */,
+				DD7BEFFE16AD9DB7000276B4 /* btn_post_setting_twitter_pushed.png */,
+				DD7BEFFF16AD9DB7000276B4 /* btn_post_setting_twitter_pushed@2x.png */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
 		DDDCB6A716A172EE00461FD0 = {
 			isa = PBXGroup;
 			children = (
@@ -124,9 +170,9 @@
 		DDDCB6BC16A172EF00461FD0 /* Socialframework_Study */ = {
 			isa = PBXGroup;
 			children = (
+				DDDCB6CE16A172EF00461FD0 /* MainStoryboard.storyboard */,
 				DDDCB6C516A172EF00461FD0 /* SFStudyAppDelegate.h */,
 				DDDCB6C616A172EF00461FD0 /* SFStudyAppDelegate.m */,
-				DDDCB6CE16A172EF00461FD0 /* MainStoryboard.storyboard */,
 				DDDCB6D116A172EF00461FD0 /* SFStudyViewController.h */,
 				DDDCB6D216A172EF00461FD0 /* SFStudyViewController.m */,
 				DDDCB6BD16A172EF00461FD0 /* Supporting Files */,
@@ -134,6 +180,9 @@
 				DD0C178916A51E3100627977 /* UIAlertViewWithoutDelegate.m */,
 				DD7BEFE216ABCC6E000276B4 /* ACAccountDetailViewController.h */,
 				DD7BEFE316ABCC6E000276B4 /* ACAccountDetailViewController.m */,
+				DD7BEFE616AC73FC000276B4 /* MusicManager.h */,
+				DD7BEFE716AC73FC000276B4 /* MusicManager.m */,
+				DD7BEFF316AD9DB7000276B4 /* image */,
 			);
 			path = Socialframework_Study;
 			sourceTree = "<group>";
@@ -244,6 +293,18 @@
 				DDDCB6CD16A172EF00461FD0 /* Default-568h@2x.png in Resources */,
 				DDDCB6D016A172EF00461FD0 /* MainStoryboard.storyboard in Resources */,
 				DDDCB6FE16A1B1FF00461FD0 /* SVProgressHUD.bundle in Resources */,
+				DD7BF00016AD9DB7000276B4 /* btn_post_setting_facebook.png in Resources */,
+				DD7BF00116AD9DB7000276B4 /* btn_post_setting_facebook@2x.png in Resources */,
+				DD7BF00216AD9DB7000276B4 /* btn_post_setting_facebook_pushed.png in Resources */,
+				DD7BF00316AD9DB7000276B4 /* btn_post_setting_facebook_pushed@2x.png in Resources */,
+				DD7BF00416AD9DB7000276B4 /* btn_post_setting_submit.png in Resources */,
+				DD7BF00516AD9DB7000276B4 /* btn_post_setting_submit@2x.png in Resources */,
+				DD7BF00616AD9DB7000276B4 /* btn_post_setting_submit_pushed.png in Resources */,
+				DD7BF00716AD9DB7000276B4 /* btn_post_setting_submit_pushed@2x.png in Resources */,
+				DD7BF00816AD9DB7000276B4 /* btn_post_setting_twitter.png in Resources */,
+				DD7BF00916AD9DB7000276B4 /* btn_post_setting_twitter@2x.png in Resources */,
+				DD7BF00A16AD9DB7000276B4 /* btn_post_setting_twitter_pushed.png in Resources */,
+				DD7BF00B16AD9DB7000276B4 /* btn_post_setting_twitter_pushed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +325,7 @@
 				DDDCB6FF16A1B1FF00461FD0 /* SVProgressHUD.m in Sources */,
 				DD0C178A16A51E3100627977 /* UIAlertViewWithoutDelegate.m in Sources */,
 				DD7BEFE416ABCC6E000276B4 /* ACAccountDetailViewController.m in Sources */,
+				DD7BEFE816AC73FC000276B4 /* MusicManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

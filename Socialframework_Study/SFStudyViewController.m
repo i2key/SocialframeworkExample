@@ -11,14 +11,13 @@
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
 #import "ACAccountDetailViewController.h"
+#import "MusicManager.h"
 
 
 
 #define BTN_TITLE_CANCEL                    @"Cancel"
 
-@interface SFStudyViewController (){
-    MPMusicPlayerController *player;
-}
+@interface SFStudyViewController ()
 @property (nonatomic, strong) ACAccountStore *accountStore;
 @property (nonatomic, strong) NSArray *accounts;
 @property (nonatomic, strong) ACAccount *selectedAccount;
@@ -31,6 +30,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.accountStore = [[ACAccountStore alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -60,28 +60,21 @@
 
 #pragma mark - SLComposeViewController Sample
 - (IBAction)tweet:(id)sender {
-    MPMediaItem *item = [self getPlayingItem];
-	MPMediaItemArtwork *artwork = [item valueForProperty:MPMediaItemPropertyArtwork];
-    
     SLComposeViewController *twitterPostVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-    [twitterPostVC setInitialText:[self createShareMessage]];
-    [twitterPostVC addImage:[artwork imageWithSize:CGSizeMake(320, 320)]];
+    [twitterPostVC setInitialText:[[MusicManager sharedManager] createShareMessage]];
+    [twitterPostVC addImage:[[MusicManager sharedManager] trackImage]];
     [self presentViewController:twitterPostVC animated:YES completion:nil];
 }
 
 - (IBAction)postWall:(id)sender {
-    MPMediaItem *item = [self getPlayingItem];
-	MPMediaItemArtwork *artwork = [item valueForProperty:MPMediaItemPropertyArtwork];
-    
     SLComposeViewController *facebookPostVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-    [facebookPostVC setInitialText:[self createShareMessage]];
-    [facebookPostVC addImage:[artwork imageWithSize:CGSizeMake(320, 320)]];
+    [facebookPostVC setInitialText:[[MusicManager sharedManager] createShareMessage]];
+    [facebookPostVC addImage:[[MusicManager sharedManager] trackImage]];
     [self presentViewController:facebookPostVC animated:YES completion:nil];
 }
 
 #pragma mark - ACAccount Sample
 - (IBAction)showTwitterAccounts:(id)sender {
-    self.accountStore = [[ACAccountStore alloc] init];
 	ACAccountType *twitterType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     [self.accountStore requestAccessToAccountsWithType:twitterType options:Nil completion:^(BOOL granted, NSError *error) {
         if (granted) {
@@ -89,23 +82,25 @@
 			[thread start];
 		}
     }];
+    
 }
 
 - (IBAction)showFacebookAccounts:(id)sender {
-    self.accountStore = [[ACAccountStore alloc] init];
     ACAccountType *facebookType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
-    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-                             @"325268504258425", ACFacebookAppIdKey,
-                             //[NSArray arrayWithObjects:@"public_actions", @"publish_stream", @"offline_access", nil], ACFacebookPermissionsKey,
-                             [NSArray arrayWithObjects:@"email",nil], ACFacebookPermissionsKey,
-                             ACFacebookAudienceOnlyMe, ACFacebookAudienceKey,
-                             nil];
+
+    NSDictionary *options = @{ACFacebookAppIdKey : @"325268504258425",
+                        ACFacebookPermissionsKey : @[@"email"],
+                           ACFacebookAudienceKey : ACFacebookAudienceOnlyMe};
+
     [self.accountStore requestAccessToAccountsWithType:facebookType options:options completion:^(BOOL granted, NSError *error) {
         if(granted){
             NSThread *thread = [[NSThread alloc]initWithTarget:self selector:@selector(showActionSheet:) object:facebookType];
             [thread start];
+        }else{
+            NSLog(@"error:%@",[error description]);
         }
      }];
+        
 }
 
 - (void)showActionSheet :(ACAccountType*)serviceType
@@ -127,58 +122,23 @@
 	}
     self.selectedAccount = [self.accounts objectAtIndex:buttonIndex];
     [_selectedAccountName setText:[self.selectedAccount username]];
+    
+    [self showModalScreen];
 }
 
-#pragma mark - SLRequest Sample
-- (IBAction)tweetUsingSLRequest:(id)sender {
-    
-    if(self.selectedAccount == Nil){
-        return;
-    }
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
-        NSURL *url = [NSURL URLWithString:@"http://api.twitter.com/1.1/statuses/update_with_media.json"];
-        NSDictionary *params = [NSDictionary dictionaryWithObject:[self createShareMessage] forKey:@"status"];
-        SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter
-                                                requestMethod:SLRequestMethodPOST
-                                                          URL:url
-                                                   parameters:params];
-
-        NSData *imageData=UIImagePNGRepresentation([self getPlayingTrackImage]);
-        [request addMultipartData:imageData withName:@"media[]" type:@"multipart/form-data" filename:@"hoge"];
-        
-        [request setAccount:self.selectedAccount];
-        [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-            NSLog(@"responseData=%@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
-        }];
-    }
+- (void)showModalScreen{
+    ACAccountDetailViewController *destVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ACAccountDetailViewController"];
+    [destVC setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    destVC.selectedAccount = self.selectedAccount;
+    [self presentViewController:destVC animated:YES completion:nil];
 }
 
 #pragma mark - mediaPlayer
 -(void)updatePlayingInfo{
-    MPMediaItem *item = [self getPlayingItem];
-	MPMediaItemArtwork *artwork = [item valueForProperty:MPMediaItemPropertyArtwork];
-    [_trackImageView setImage:[artwork imageWithSize:CGSizeMake(320, 320)]];
-    [_titleLabel setText:[item valueForProperty:MPMediaItemPropertyTitle]];
-    [_albumLabel setText:[item valueForProperty:MPMediaItemPropertyAlbumTitle]];
-    [_artistLabel setText:[item valueForProperty:MPMediaItemPropertyArtist]];
-}
-
--(MPMediaItem *)getPlayingItem{
-    if(player == nil){
-        player = [MPMusicPlayerController iPodMusicPlayer];
-    }
-    return [player nowPlayingItem];
-}
-
--(NSString *)createShareMessage{
-    MPMediaItem *item = [self getPlayingItem];
-    return [NSString stringWithFormat:@"%@ の %@ を聴いています",[item valueForProperty:MPMediaItemPropertyArtist],[item valueForProperty:MPMediaItemPropertyTitle]];
-}
-
--(UIImage *)getPlayingTrackImage{
-    MPMediaItem *item = [self getPlayingItem];
-	MPMediaItemArtwork *artwork = [item valueForProperty:MPMediaItemPropertyArtwork];
-    return [artwork imageWithSize:CGSizeMake(320, 320)];
+    [_trackImageView setImage:[[MusicManager sharedManager] trackImage]];
+    [_titleLabel setText:[[MusicManager sharedManager] title]];
+    [_albumLabel setText:[[MusicManager sharedManager] album]];
+    [_artistLabel setText:[[MusicManager sharedManager] artist]];
 }
 
 #pragma mark - notificationCenter
@@ -186,14 +146,6 @@
     [self updatePlayingInfo];
 }
 
-
-#pragma mark - Segue
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    ACAccountDetailViewController *controller = (ACAccountDetailViewController *)[segue destinationViewController];
-    controller.selectedAccount = self.selectedAccount;
-
-}
 
 
 @end

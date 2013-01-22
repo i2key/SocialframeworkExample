@@ -12,7 +12,12 @@
 @interface ACAccountDetailViewController : UIViewController
 - (IBAction)reverseAuth:(id)sender;
 - (IBAction)pushCloseBtn:(id)sender;
+- (IBAction)sendMessage:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIImageView *trackImageView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *albumLabel;
+@property (weak, nonatomic) IBOutlet UILabel *artistLabel;
 @property(nonatomic,strong) ACAccount *selectedAccount;
 @property (weak, nonatomic) IBOutlet UILabel *accountTypeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;

@@ -16,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *selectedAccountName;
 - (IBAction)tweet:(id)sender;
 - (IBAction)postWall:(id)sender;
-- (IBAction)tweetUsingSLRequest:(id)sender;
 - (IBAction)showTwitterAccounts:(id)sender;
 - (IBAction)showFacebookAccounts:(id)sender;
 

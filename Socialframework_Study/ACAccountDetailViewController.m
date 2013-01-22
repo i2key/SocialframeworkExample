@@ -11,6 +11,7 @@
 #import "TWSignedRequest.h"
 #import "SVProgressHUD.h"
 #import "UIAlertViewWithoutDelegate.h"
+#import "MusicManager.h"
 
 
 #define TW_X_AUTH_MODE_KEY                  @"x_auth_mode"
@@ -55,12 +56,90 @@
     ACAccountCredential *credential = [self.selectedAccount credential];
     [self.oauthTokenTextView setText:[credential oauthToken]];
     
+    //バックグラウンドからの復帰タイミングでプレーヤ画面を更新するために通知センターを使う
+    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self
+               selector:@selector(recievedNotification:)
+                   name:UIApplicationWillEnterForegroundNotification
+                 object:nil];
+    
+    [self updatePlayingInfo];
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - SLRequest Sample
+- (IBAction)sendMessage:(id)sender {
+    if ([ACAccountTypeIdentifierTwitter isEqual:[[self.selectedAccount accountType] identifier] ]) {
+        [self tweetUsingSLRequest];
+    }else if([ACAccountTypeIdentifierFacebook isEqual:[[self.selectedAccount accountType] identifier] ]){
+        [self postWallUsingSLRequest];
+    }else{
+        NSLog(@"Maybe you selected Weibo");
+    }
+}
+
+- (void)tweetUsingSLRequest{
+    if(self.selectedAccount == Nil){
+        return;
+    }
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+        NSURL *url = [NSURL URLWithString:@"http://api.twitter.com/1.1/statuses/update_with_media.json"];
+        NSDictionary *params = [NSDictionary dictionaryWithObject:[[MusicManager sharedManager] createShareMessage] forKey:@"status"];
+        SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                                                requestMethod:SLRequestMethodPOST
+                                                          URL:url
+                                                   parameters:params];
+        
+        NSData *imageData=UIImagePNGRepresentation([[MusicManager sharedManager] trackImage]);
+        [request addMultipartData:imageData withName:@"media[]" type:@"multipart/form-data" filename:@"hoge"];
+        
+        [request setAccount:self.selectedAccount];
+        [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+            NSLog(@"responseData=%@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
+        }];
+    }
+}
+
+- (void)postWallUsingSLRequest{
+    ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+    ACAccountType *facebookType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+    
+    NSDictionary *options = @{ACFacebookAppIdKey : @"325268504258425",
+                        ACFacebookPermissionsKey : @[@"publish_actions"],
+                            ACFacebookAudienceKey : ACFacebookAudienceOnlyMe};
+    
+    [accountStore requestAccessToAccountsWithType:facebookType options:options completion:^(BOOL granted, NSError *error) {
+        if(granted){
+            /*
+            NSArray *accounts = [accountStore accountsWithAccountType:facebookType];
+            ACAccount *anAccount = [accounts lastObject];
+             */
+            NSString *urlStr = [NSString stringWithFormat:@"https://graph.facebook.com/me/feed"];
+            NSURL *url = [NSURL URLWithString:urlStr];
+            NSDictionary *params = @{@"message" : [[MusicManager sharedManager] createShareMessage]};
+            
+            SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook
+                                                    requestMethod:SLRequestMethodPOST
+                                                              URL:url parameters:params];
+            
+            //NSData *imageData=UIImagePNGRepresentation([[MusicManager sharedManager] trackImage]);
+            //[request addMultipartData:imageData withName:@"picture" type:@"multipart/form-data" filename:@"hoge"];
+            
+            [request setAccount:self.selectedAccount];
+            [request performRequestWithHandler:^(NSData *response, NSHTTPURLResponse *urlResponse, NSError *error){
+                NSLog(@"response:%@",[[NSString alloc]initWithData:response encoding:NSUTF8StringEncoding]);
+            }];
+        }else{
+            NSLog(@"error post:%@",[error description]);
+        }
+    }];
+    
 }
 
 #pragma mark - ReverseAuth Sample
@@ -137,7 +216,22 @@
 	}
 }
 
+#pragma mark - mediaPlayer
+-(void)updatePlayingInfo{
+    [_trackImageView setImage:[[MusicManager sharedManager] trackImage]];
+    [_titleLabel setText:[[MusicManager sharedManager] title]];
+    [_albumLabel setText:[[MusicManager sharedManager] album]];
+    [_artistLabel setText:[[MusicManager sharedManager] artist]];
+}
+
+#pragma mark - notificationCenter
+-(void)recievedNotification:(NSNotification*)notification{
+    [self updatePlayingInfo];
+}
+
+
 - (IBAction)pushCloseBtn:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 @end
