@@ -97,10 +97,12 @@
                                                    parameters:params];
         
         NSData *imageData=UIImagePNGRepresentation([[MusicManager sharedManager] trackImage]);
+        [self showProgress];
         [request addMultipartData:imageData withName:@"media[]" type:@"multipart/form-data" filename:@"hoge"];
         
         [request setAccount:self.selectedAccount];
         [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+            [self dismissProgress:nil];
             NSLog(@"responseData=%@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
         }];
     }
@@ -124,6 +126,7 @@
             NSURL *url = [NSURL URLWithString:urlStr];
             NSDictionary *params = @{@"message" : [[MusicManager sharedManager] createShareMessage]};
             
+            [self showProgress];
             SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook
                                                     requestMethod:SLRequestMethodPOST
                                                               URL:url parameters:params];
@@ -133,6 +136,7 @@
             
             [request setAccount:self.selectedAccount];
             [request performRequestWithHandler:^(NSData *response, NSHTTPURLResponse *urlResponse, NSError *error){
+                [self dismissProgress:nil];
                 NSLog(@"response:%@",[[NSString alloc]initWithData:response encoding:NSUTF8StringEncoding]);
             }];
         }else{
