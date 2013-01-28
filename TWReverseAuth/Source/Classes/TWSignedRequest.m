@@ -33,7 +33,7 @@
 #define TW_HTTP_HEADER_AUTHORIZATION @"Authorization"
 
 #define kTWConsumerKey @"v7iljKuW21avHuUTHXVzg"
-#define kTWConsumerSecret @"WtuhjFbK2DZDKEUTSmVH8tEHiTAkH6yaJGx45nHPbU"
+#define kTWConsumerSecret CONSUMER_SECRET
 
 @interface TWSignedRequest()
 {
